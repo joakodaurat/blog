@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import Hambuger from "../components/Hambuger.astro";
+const skills = ["node", "javascript"];
+const skillColor = "navy";
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>joaqui</title>
+    <style define:vars={{ skillColor }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: green;
+        color: var(--skillColor);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <Hambuger />
+    <Navigation />
+    <h1>about {pageTitle}</h1>
+    <slot />
+    <p>Mis habilidades son:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    <Footer />
+  </body>
+</html>
+<script>
+  import "../scripts/menu.js";
+</script>
